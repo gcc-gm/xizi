@@ -1,0 +1,70 @@
+{% extends 'loginbase.html' %}
+
+{% block title %}
+    确定赠送
+{% endblock %}
+
+{% block head %}
+    <link rel="stylesheet" href="{{ url_for('static',
+    filename='css/css/bootstrap/css/ensure.css') }}">
+{% endblock %}
+{% block nav %}
+{% endblock %}
+{% block main %}
+    <div class="container" style="background: #263325;">
+        <div class="row flex-vertical-center">
+            <div class="col-md-6 title">
+                <span class="sub-title">同意赠送一本书</span>
+                <hr>
+            </div>
+        </div>
+        <div class="row flex-vertical-center">
+            <div class="col-md-6 title">
+
+                <div>
+                    <span class="sub-title">请填写相关信息 : <small>请求者得到你的qq号码</small></span>
+                </div>
+                <div>
+                    <span class="sub-title"><small>请保证你填写的信息无误,否则请求者将无法联系你</small></span>
+                </div>
+                <hr>
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-8 col-xs-offset-2 col-md-4 col-md-offset-4">
+                <div class="row">
+                    <div class="col-md-8 col-md-offset-2">
+                        <form action="{{ 1 }}" method="post">
+                            <label style="margin-bottom: 10px ;color:#fff;" class="sub-title-color"
+                                   for="giver_qq">QQ帐号:</label>
+
+                            <input placeholder="请正确填写你的QQ帐号" id="giver_qq"
+                                   name="giver_qq"
+                                   class="normal-input btn-block form-control"
+                                   value="{{ form.data['giver_qq'] | default('',true) }}">
+                            <div class="row">
+                                <div class="col-md-8 col-md-offset-2">
+                                    <input style="margin-top:15px; background: #00a1cb;" type="submit"
+                                           class="btn btn-big btn-block"
+                                           value="确定赠送">
+
+                                </div>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+
+
+            </div>
+
+        </div>
+        {#footer#}
+        <div class="row">
+            <div style="color:#263325;height: 100px; " class="col-md-12 col-xs-12"></div>
+        </div>
+
+    </div>
+
+{% endblock %}

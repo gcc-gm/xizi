@@ -1,0 +1,90 @@
+{% extends 'loginbase.html' %}
+{% block title %}
+    个人中心
+{% endblock %}
+
+{% block head %}
+    <link rel="stylesheet"
+          href="{{ url_for('static',filename='css/css/bootstrap/css/personal.css') }}">
+{% endblock %}
+
+
+{% block main %}
+    <div class="container personal-title">
+        <div class="row flex-vertical-center">
+            <div class="col-md-6 title">
+                <span class="sub-title"> 个人中心: </span>
+                <hr>
+            </div>
+        </div>
+    </div>
+
+    <div class="container personal">
+        <div class="row">
+            <div style="margin-top: 30px;" class="col-xs-10 col-md-10 col-xs-offset-1 col-md-offset-2">
+                <p class="info-p"> 出于安全考虑当前只允许已验证邮箱的用户能通过电子邮箱找回密码,如疑问请qq联系管理员:<i> 2677526566 </i></p>
+            </div>
+
+
+            <div style="margin-top: 15px;" class="col-xs-8 col-md-8 col-xs-offset-2 col-md-offset-2 content-personal">
+                <div>
+                    <p style="margin-top: 15px;">
+                        <span>用户名: </span>
+                        <span>  {{ user.name }} </span>
+                    </p>
+                </div>
+
+                <div>
+                    <p>
+                        <span>有  {{ wishes_total }}  本书想要 </span>
+
+                    </p>
+                </div>
+                <div>
+                    <p>
+                        <span>愿意赠出  {{ presents_total }}  本书</span>
+                    </p>
+                </div>
+
+                <div>
+                    <p>
+                        <span>当前爱心值:   </span>
+                        <span> {{ user.love_value }} </span>
+                    </p>
+                </div>
+                <div>
+                    <p>
+                        <span>当前星愿值:   </span>
+                        <span> {{ user.star_value }} </span>
+                    </p>
+                </div>
+                <div>
+                    <p>
+                        <span>邮箱:   </span>
+                        <span>  {{ user.email }} </span>
+
+                    </p>
+                </div>
+                <div>
+                    <p>
+                        <span>邮箱状态:  -- </span>
+                        <span class="btn btn-info disabled email_status"> {{ user.email_bind }} </span>
+
+                    </p>
+                </div>
+
+                <p style="margin-bottom: 20px;">
+                    <a class="reset-link" href="{{ url_for('web.change_password') }}">密码重置</a>
+                    {% if not user._email_bind %}
+                        <a style="margin-left: 10px;" class="reset-link" href="{{ url_for('web.email_bind') }}">邮箱绑定</a>
+                    {% endif %}
+                </p>
+
+
+            </div>
+
+        </div>
+    </div>
+    <!-- footer -->
+
+{% endblock %}

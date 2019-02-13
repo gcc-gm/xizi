@@ -1,0 +1,40 @@
+{% extends 'loginbase.html' %}
+
+{% block title %}
+    星愿值
+{% endblock %}
+
+{% block head %}
+    <link rel="stylesheet" href="{{ url_for('static',
+        filename='css/css/bootstrap/css/star.css') }}">
+{% endblock %}
+{% block main %}
+  <div class="container" style="background: #263325;">
+      <div class="row flex-vertical-center">
+            <div class="col-md-6 title">
+                <span class="sub-title">
+                    你的星愿值已不足 !
+                </span>
+                <p style=" margin-top: 10px;color:#AAB2BD;">你当前的星愿值   {{ star_value }}</p>
+                <hr>
+            </div>
+        </div>
+        <div class="row flex-vertical-center">
+            <div class="col-md-6 info-title">
+
+                <div>
+                    <span class="info-title">提示 : <small>每请求1本书，需要消耗10个星愿值；当你的星愿值不足时, 可通过赠送获得!</small></span>
+                </div>
+                <div>
+                    <span class="info-title">
+                        <strong>寄语 : </strong><small>所谓赠人玫瑰, 手留余香 !</small></span>
+                </div>
+                <hr>
+
+            </div>
+        </div>
+
+  </div>
+
+
+{% endblock %}

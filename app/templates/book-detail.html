@@ -1,0 +1,154 @@
+{% extends 'loginbase.html' %}
+{% block title %}详情{% endblock %}
+
+{% block head %}
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/css/bootstrap/css/book-detail.css') }}">
+{% endblock %}
+<!-- 主体内容 -->
+{% block main %}
+    <div style="background: #263325" class="container-fluid detail-body">
+        <div class="row flex-vertical-center">
+            <div class="col-xs-6 col-md-6 col-md-offset-1 title">
+                <span class="sub-title"> 书籍详情 </span>
+                <hr>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-xs-12 col-md-8 col-md-offset-1 detail-content ">
+                <div class="row ">
+                    <div class="col-xs-6 col-md-3 detail-img">
+                        <img src="{{ url_for('static', filename='upload/'+book.image) }}" alt="">
+                    </div>
+
+                    <div style="" class="col-xs-6 col-md-5 detail-info">
+                        <div>
+                            <span style="font-size:16px;color:#fff;">{{ book.title }}</span>
+                        </div>
+                        <div class="description-font-margin">
+
+                            <div>
+                                <span>{{ book.author }}</span>
+                            </div>
+
+                            <div>
+                                <span>{{ book.publisher }}</span>
+                            </div>
+
+                            <div>
+                                <span> 价格  : </span>
+                                <span> ￥CNY {{ book.price }} </span>
+                            </div>
+                            <div>
+                                <span>图书编号:</span>
+                                <span id="number">{{ book.number }}</span>
+                            </div>
+                            <div class="color-count">
+                                <span>{{ book.wishes_count }}人想要 / </span>
+                                <span>{{ book.presents_count }}人赠送</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        {#    操作#}
+        <div class="row">
+            <div class="col-xs-10 col-md-4 col-md-offset-1  operating ">
+
+
+                {% if (current_user not in wishes_note) and (current_user not in presents_note) %}
+                    <div class="col-xs-6 col-md-3">
+                        <a class="btn btn-default btn-outline"
+                           href="{{ url_for('web.save_to_presents', book_id=book.id) }}">
+                            赠送此书
+                        </a>
+                    </div>
+                    <div class="col-xs-6 col-md-3">
+                        <a class="btn btn-default btn-outline" href="{{ url_for('web.save_to_wishes', book_id=book.id) }}">
+                            加入心愿清单
+                        </a>
+                    </div>
+
+                {% elif current_user in wishes_note %}
+                    <div class="col-xs-6 col-md-3">
+                        <span class="btn btn-info btn-sm">已经在心愿清单</span>
+                    </div>
+                {% else %}
+                    <div class="col-xs-6 col-md-3">
+                        <span class="btn  btn-info btn-sm">已经在赠送清单</span>
+                    </div>
+                {% endif %}
+
+
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-xs-10 col-md-6 col-md-offset-1 ">
+                <div class="detail-summary">
+                    <div style="margin-top: 20px;" class="col-xs-8 col-md-4">
+                        <span style="font-size:18px;color:#fff;">内容简介 : </span>
+                    </div>
+
+                    <div style="text-overflow: ellipsis;" class="col-xs-12 col-md-12 summary-p">
+                        <P>   {{ book.summary }}</P>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div style="background: #3b4f3a" class="container-fluid">
+        <div class="row">
+
+            {% if wishes_note and current_user not in wishes_note %}
+                <div class="col-xs-10 col-md-6 col-xs-offset-1 col-md-offset-1   wisher">
+                    <hr>
+                    {% for user in wishes_note %}
+                        <div class="col-xs-8 col-md-6">
+                            <p>用户名：{{ user.name }}</p>
+                        </div>
+                        <div class="col-xs-4 col-md-6">
+
+                            <a class="btn btn-info"
+                                 href="{{ url_for('web.give_book', book_id=book.id, uid=user.id) }}">
+                                赠送此书
+                            </a>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        </div>
+        <div class="row">
+            {% if presents_note and current_user not in presents_note %}
+
+
+                <div class="col-xs-10 col-md-6  col-xs-offset-1 col-md-offset-1 presenter">
+                    <hr>
+                    {% for user in presents_note %}
+                        <div class="col-xs-8 col-md-6 user-p">
+                            <p>用户名：{{ user.name }}</p>
+                        </div>
+                        <div class="col-xs-4 col-md-6">
+                            <a role="button" class="btn btn-info btn-sm"
+                               href="{{ url_for('web.request_book', number=book.number,uid=user.id) }}">
+                                请求此书
+                            </a>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        </div>
+
+
+    </div>
+    <div class="row">
+        <div style="height: 100px" class="col-md-12 col-xs-12"></div>
+    </div>
+
+{% endblock %}
+<!-- footer -->

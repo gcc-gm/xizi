@@ -1,0 +1,101 @@
+{% extends 'loginbase.html' %}
+{% block title %}make_trad{% endblock %}
+{% block head %}
+    <link rel="stylesheet" href="{{ url_for('static',
+    filename='css/css/bootstrap/css/request-trad.css') }}">
+{% endblock %}
+{% block main %}
+    <div class="container" style="background: #263325;">
+        <div class="row flex-vertical-center">
+            <div class="col-md-6 title">
+                <span class="sub-title">正在向 <strong> {{ giver.name }} </strong> 请求一本书</span>
+                <hr>
+            </div>
+        </div>
+        <div class="row flex-vertical-center">
+            <div class="col-md-6 title">
+
+                <div>
+                    <span class="sub-title">请填写相关信息 : <small>系统将发送你的请求至赠送者的邮箱</small></span>
+                </div>
+                <div>
+                    <span class="sub-title"><small>请保证你填写的信息无误,否则赠送者将无法收到你的信息</small></span>
+                </div>
+                <hr>
+
+            </div>
+        </div>
+
+
+        <div class="row request-info">
+            <div class="col-md-6">
+                <div class="bg-container" style="color: #fff">
+                    <div style="background: #5c8a5a; margin-top:15px;" class="row">
+                    </div>
+                    <div style="margin-bottom: 20px;" class="row">
+                        <div class="col-md-10 col-md-offset-1">
+                            <span class="main-color">
+                                本次交易将消耗你10个星愿值，
+                                你当前还有{{ requester.star_value }}星愿值
+                            </span>
+                            <p><small>本网站不提供交易平台, 成功发起请求后你可以通过QQ与赠送者取得联系!</small></p>
+                        </div>
+                    </div>
+                    <div class="col-md-10">
+                        <form action="" method="post">
+                            <div class="row">
+                                <div class="col-md-10 col-md-offset-1 flex-vertical input-margin">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label style="margin-bottom: 10px;" class="sub-title-color"
+                                                   for="requester_qq">请求者QQ:</label>
+
+                                            <input placeholder="请填写请求人QQ帐号" id="requester_qq"
+                                                   name="requester_qq"
+                                                   class="normal-input btn-block form-control"
+                                                   value="{{ form.data['requester_qq'] | default('',true) }}">
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label style="margin-top: 20px;margin-bottom: 10px;" class="sub-title-color"
+                                                   for="requester_mobile">请求者的联系电话</label>
+
+                                            <input placeholder="如13818181818" id="requester_mobile"
+                                                   name="requester_mobile"
+                                                   class="normal-input btn-block form-control"
+                                                   value="{{ form.data['requester_mobile'] | default('',true) }}">
+                                        </div>
+                                    </div>
+
+                                    <label style="margin-top: 20px;margin-bottom: 10px;"  class="sub-title-color" for="requester_message">对他 / 她
+                                        的留言</label>
+                                    <textarea class="form-control" id="requester_message" name="requester_message"
+                                              rows="3"
+                                              placeholder="如有一些特别的要求，可以在这里填写"></textarea>
+                                </div>
+                            </div>
+
+
+                            <div class="row submit-info">
+                                <div class="col-md-5 col-md-offset-4 flex-vertical text-center">
+                                    <input style="margin-top:15px; background: #00a1cb;" type="submit" class="btn btn-big btn-block"
+                                           value="提交">
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div style="color:#263325;height: 100px; " class="col-md-12 col-xs-12"></div>
+        </div>
+
+    </div>
+
+
+
+
+{% endblock %}

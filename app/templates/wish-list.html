@@ -1,0 +1,74 @@
+{% extends 'loginbase.html' %}
+
+{% block title %}
+    心愿清单
+{% endblock %}
+{% block head %}
+    <link rel="stylesheet"
+          href="{{ url_for('static',
+          filename='css/css/bootstrap/css/wish-list.css') }}" xmlns="http://www.w3.org/1999/html">
+{% endblock %}
+{% block main %}
+
+    <!-- 主题内容 -->
+
+    <div style="background: #263325" class="container">
+        <div class="row flex-vertical-center">
+            <div class="col-md-6 title">
+                <span class="sub-title">我想要的书籍  共  {{ total }} 本</span>
+                <hr>
+            </div>
+        </div>
+        {% for book in wish_list %}
+
+            <div class="row">
+                <div class="col-xs-12 col-md-8  detail-content ">
+                    <div class="row">
+                        <div class="col-xs-6 col-md-3 detail-img">
+                            <img src="{{ url_for('static', filename='upload/'+book.image) }}" alt="">
+                        </div>
+                        <div class="col-xs-6 col-md-6 detail-info">
+                            <div>
+                                <span style="font-size:16px;color:#fff;">{{ book.title }}</span>
+                            </div>
+                            <div class="description-font-margin">
+                                <div>
+
+                                    <span>{{ book.author }}</span>
+                                </div>
+                                <div>
+
+                                    <span>{{ book.publisher }}</span>
+                                </div>
+                                <div>
+                                    <span>￥CNY</span>
+                                    <span> {{ book.price }}</span>
+                                </div>
+                                <div>
+                                    <span>编号:</span>
+                                    <span id="number">{{ book.number }}</span>
+                                </div>
+                                <div class="color-count">
+                                    <a href="{{ url_for('web.book_detail', number=book.number) }}">
+                                        <span>{{ book.wishes_count }}人想要 / </span>
+                                        <span>{{ book.presents_count }}人可赠送</span>
+                                    </a>
+                                </div>
+                                <div class="cancel">
+                                    <a href="{{ url_for('web.cancel_wish_operation',book_id=book.id) }}">
+                                        撤销赠送
+                                    </a>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+        <div class="row">
+            <div style="height: 100px;" class="col-md-12 col-xs-12"></div>
+        </div>
+    </div>
+
+{% endblock %}
