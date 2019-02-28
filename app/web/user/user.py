@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-from flask import request, redirect, url_for, render_template, flash
+from flask import request, redirect, url_for, render_template, flash, abort
 from flask_login import login_user, logout_user, login_required, current_user
 
 from app.forms.email import EmailForm
@@ -34,6 +34,7 @@ def login():
             login_user(user)
             # 登陆后自动跳回原来到原来的页面
             return_next = request.args.get('next')
+
             if not return_next or not return_next.startswith('/'):
                 return_next = url_for('web.recent')
             return redirect(return_next)
@@ -134,3 +135,5 @@ def not_enough_value():
     if current_user.star_value >= 20:
         return redirect(url_for('web.recent'))
     return render_template('about_star.html', star_value=current_user.star_value)
+
+

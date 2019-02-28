@@ -23,3 +23,15 @@ def filter_images(number):
                 raise e
             img_name = filename
     return img_name
+
+
+def re_book_image(image_path):
+    path = current_app.config['UPLOAD_FOLDER'] +'\\'+ image_path
+
+    if os.path.exists(path):
+        try:
+            os.remove(path)
+        except Exception as e:
+            raise e
+        return True
+    return False

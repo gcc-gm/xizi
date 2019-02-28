@@ -18,7 +18,6 @@ class BookViewModel:
         self.wishes_count = len(book.wishes) or 0
         self.presents_count = len(book.presents) or 0
 
-
     # 简介
     @property
     def intro(self):

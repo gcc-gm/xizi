@@ -39,17 +39,18 @@ class User(_Base, UserMixin):
     # 同上
     # _sub_trad = relationship('Trad', backref=backref('owner'))
 
+    # 简介
+    @property
+    def intro(self):
+        return {'student_id': self.student_id, 'name': self.name,
+                'star': self.star_value, 'love': self.love_value,
+                'id':self.id}
+
     @property
     def email_bind(self):
         if self._email_bind:
             return '已绑定'
         return '未绑定'
-
-    # @property
-    # def sub_trad(self):
-    #     if self._sub_trad:
-    #         return [trad for trad in self._sub_trad if trad.status == 1]
-    #     return []
 
     @property
     def wishes(self):

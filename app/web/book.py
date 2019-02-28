@@ -17,6 +17,7 @@ from app.web import web
 @web.route('/search/book')
 def search():
     collection_books = BookCollection()
+
     form = SearchForm(request.args)
     if form.validate():
         # strip()

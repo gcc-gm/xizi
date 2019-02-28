@@ -106,6 +106,9 @@ def Success(trad_id):
             trad.pending = PendingStatus.Success.value
             giver = User.query.get(trad.giver_id)
             giver.love_value += 10
+            if giver.love_value == 120:
+                giver.love_value = 80
+                giver.star_value += 10
             trad.launched = 0
         flash('操作成功 ! ')
 

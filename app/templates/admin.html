@@ -1,0 +1,181 @@
+{% extends 'loginbase.html' %}
+{% block title %}
+    admin
+{% endblock %}
+
+{% block head %}
+    <link rel="stylesheet" href="{{ url_for('static',
+        filename='css/css/bootstrap/css/admin.css') }}">
+{% endblock %}
+
+{% block main %}
+
+    <div style="background: #263325" class="container">
+        <div class="row flex-vertical-center">
+            <div class="col-md-6 title">
+                <span class="sub-title">网站所有注册用户</span>
+                <hr>
+            </div>
+        </div>
+        <table class="table table-striped table-hover">
+            <tr>
+                <td class="active">uid</td>
+                <td class="success">用户名</td>
+                <td class="warning">学号</td>
+                <td class="danger">星愿值</td>
+                <td class="info">爱心值</td>
+                <td class="info">操作</td>
+            </tr>
+
+            {% for user in users %}
+
+                <tr>
+                    <td class="active">{{ user.id }}</td>
+                    <td class="success">{{ user.name }}</td>
+                    <td class="warning">{{ user.student_id }}</td>
+                    <td class="danger">{{ user.star }}</td>
+                    <td class="info">{{ user.love }}</td>
+                    <td class="info">
+                           <a class="btn btn-sm btn-danger"
+                           href="{{ url_for('web.del_user',uid=user.id) }}">
+                            删除
+                        </a>
+                    </td>
+                </tr>
+
+            {% endfor %}
+        </table>
+        {#    网站所有书籍#}
+        <div class="row flex-vertical-center">
+            <div class="col-md-6 title">
+                <span class="sub-title">网站所有书籍: </span>
+                <hr>
+            </div>
+        </div>
+        <table class="table table-striped table-hover">
+            <tr>
+                <td class="active">id</td>
+                <td class="success">书名</td>
+                <td class="warning">请求数</td>
+                <td class="danger">赠送数</td>
+                <td class="info">操作</td>
+            </tr>
+
+            {% for book in books %}
+
+                <tr>
+                    <td class="active">{{ book.id }}</td>
+                    <td class="success">{{ book.title }}</td>
+                    <td class="warning">{{ book.wishes_count }}</td>
+                    <td class="danger">{{ book.presents_count }}</td>
+                    <td class="info">
+                        <a class="btn btn-sm btn-danger"
+                           href="{{ url_for('web.del_book',bid=book.id,image=book.image) }}">
+                            删除
+                        </a>
+                    </td>
+                </tr>
+
+            {% endfor %}
+        </table>
+        {#    网站所有书籍请求清单#}
+        <div class="row flex-vertical-center">
+            <div class="col-md-6 title">
+                <span class="sub-title">网站所有书籍请求清单:</span>
+                <hr>
+            </div>
+        </div>
+
+        <table class="table table-striped table-hover">
+            <tr>
+                <td class="active">时间</td>
+                <td class="success">uid</td>
+                <td class="warning">status</td>
+                <td class="danger">book_id</td>
+                <td class="info">操作</td>
+
+            </tr>
+            {% for wish in wishes %}
+                <tr>
+                    <td class="active">{{ wish.create_datetime }}</td>
+                    <td class="success">{{ wish.uid }}</td>
+                    <td class="warning">{{ wish.status }}</td>
+                    <td class="danger">{{ wish.book_id }}</td>
+                    <td class="info">
+                        <a class="btn btn-sm btn-danger"
+                           href="{{ url_for('web.del_wish',wid=wish.uid) }}">
+                            删除
+                        </a>
+                    </td>
+
+                </tr>
+            {% endfor %}
+        </table>
+
+
+        <div class="row flex-vertical-center">
+            <div class="col-md-6 title">
+                <span class="sub-title">网站所有书籍赠送清单:</span>
+                <hr>
+            </div>
+        </div>
+
+        <table class="table table-striped table-hover">
+            <tr>
+                <td class="active">时间</td>
+                <td class="success">uid</td>
+                <td class="warning">status</td>
+                <td class="danger">book_id</td>
+                <td class="info">操作</td>
+
+            </tr>
+            {% for present in presents %}
+                <tr>
+                    <td class="active">{{ present.create_datetime }}</td>
+                    <td class="success">{{ present.uid }}</td>
+                    <td class="warning">{{ present.status }}</td>
+                    <td class="danger">{{ present.book_id }}</td>
+                    <td class="info">
+                        <a class="btn btn-sm btn-danger"
+                           href="{{ url_for('web.del_present',pid=present.uid) }}">删除</a>
+                    </td>
+
+                </tr>
+            {% endfor %}
+        </table>
+
+        <div class="row flex-vertical-center">
+            <div class="col-md-6 title">
+                <span class="sub-title">网站所有交易情况:</span>
+                <hr>
+            </div>
+        </div>
+
+        <table class="table table-striped table-hover">
+            <tr>
+                <td class="active">trad_id</td>
+                <td class="success">请求者</td>
+                <td class="warning">赠送者</td>
+                <td class="info">交易状态</td>
+                <td class="danger">操作</td>
+
+            </tr>
+            {% for trad in trads %}
+                <tr>
+                    <td class="active">{{ trad.id }}</td>
+                    <td class="success">{{ trad.requester_name }}</td>
+                    <td class="warning">{{ trad.giver_name }}</td>
+                    <td class="info">{{ trad.pending }}</td>
+                    <td class="danger">
+                         <a class="btn btn-sm btn-danger"
+                           href="{{ url_for('web.del_trad',trad_id=trad.id) }}">删除</a>
+                    </td>
+
+                </tr>
+            {% endfor %}
+        </table>
+
+
+    </div>
+
+{% endblock %}

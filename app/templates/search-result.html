@@ -8,47 +8,63 @@
 {% endblock %}
 
 {% block main %}
-<!-- 主题内容 -->
+    <!-- 主题内容 -->
     {% if books.total != 0 %}
-	<div class="container">
-		<div class="row">
-			<p class="count">搜索: {{ keyword }} 的结果: 共 {{ total }} 条记录</p><hr>
-            {% for book in books %}
-                <a href="{{ url_for('web.book_detail',number=book.number) }}">
-                    <div class="col-xs-10 col-md-10 detail-content ">
-                    <div class="col-xs-3 col-md-3 detail-img" >
-                        <img src="{{ url_for('static',filename='upload/'+book.image) }}" alt="">
-                    </div>
-                    <div class="col-xs-8 col-md-8 detail-info">
-                        <div>
-                            <h4>{{ book.title }}</h4>
-                        </div>
-                        <div class="description-font-margin">
-                            <div>
-                                <span>作者:</span>
-                                <span>{{ book.author }}</span>
-                            </div>
-                            <div>
-                                <span>出版社:</span>
-                                <span>{{ book.publisher }}</span>
-                            </div>
-
-
-                            <div>
-                                <span>定价：</span>
-                                <span>￥CNY {{ book.price }}</span>
-                            </div>
-                            <div>
-                                <span>图书编号:</span>
-                                <span id="number">{{ book.number }}</span>
-                            </div>
-                        </div>
-                    </div>
+        <div style="background: #263325" class="container-fluid detail-body">
+            <div class="row flex-vertical-center">
+                <div class="col-xs-6 col-md-6 col-md-offset-1 title">
+                    <span class="sub-title">搜索: {{ keyword }} 的结果: 共 {{ total }} 条记录</span>
+                    <hr>
                 </div>
-                </a>
+            </div>
+
+            {% for book in books %}
+                <div class="row">
+                    <a href="{{ url_for('web.book_detail',number=book.number) }}">
+                        <div class="col-xs-12 col-md-8 col-md-offset-1 detail-content ">
+                            <div class="row ">
+                                <div class="col-xs-6 col-md-3 detail-img">
+                                    <img src="{{ url_for('static', filename='upload/'+book.image) }}" alt="">
+                                </div>
+
+                                <div style="" class="col-xs-6 col-md-5 detail-info">
+                                    <div>
+                                        <span style="font-size:16px;color:#fff;">{{ book.title }}</span>
+                                    </div>
+                                    <div class="description-font-margin">
+
+                                        <div>
+                                            <span>作者: </span>
+                                            <span>{{ book.author }}</span>
+                                        </div>
+
+                                        <div>
+                                            <span>出版社: </span>
+                                            <span>{{ book.publisher }}</span>
+                                        </div>
+
+                                        <div>
+                                            <span> 价格  : </span>
+                                            <span> ￥CNY {{ book.price }} </span>
+                                        </div>
+                                        <div>
+                                            <span>图书编号:</span>
+                                            <span id="number">{{ book.number }}</span>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
             {% endfor %}
-	    </div>
-    </div>
-      {% endif %} }
+        </div>
+        <div class="row">
+            <div style="height: 100px" class="col-md-12 col-xs-12"></div>
+        </div>
+
+    {% endif %} }
 {% endblock %}
 <!-- footer -->

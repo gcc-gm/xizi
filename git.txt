@@ -1,0 +1,2 @@
+ ssh-keygen -t rsa -C "hlhuang6514355@gmail.com"
+git remote add origin git@github.com:gcc-gm/xizi.git

@@ -28,22 +28,7 @@ def give_book(book_id, uid):
     return redirect(url_for('web.book_detail', number=book.number))
 
 
-#
-# @web.route('/ensure/agree/',methods=['POST','GET'])
-# @login_required
-# def ensure():
-#     trad = Trad.query.filter_by(
-#         giver_id=current_user.id, id=trad_id).first_or_404()
-#     form = QQForm(request.form)
-#     if request.method == "POST" and form.validate():
-#         return ''
-#
-#     return render_template('agree_request.html',form=form)
-#
-
-
-# 同意
-@web.route('/agree_trad/')
+@web.route('/agree_trad/<int:trad_id>')
 @login_required
 def agree_trad(trad_id):
     """
@@ -61,7 +46,6 @@ def agree_trad(trad_id):
             # give_id = current_user.id 这个条件可以防止超权
             trad.pending = PendingStatus.Waiting.value
         flash("操作成功!")
-        return redirect(url_for('web.ensure'))
     else:
         flash('发生了一个错误 !')
     return redirect(url_for('web.trad_info'))

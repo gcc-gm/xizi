@@ -9,7 +9,7 @@ class SearchBook():
         self.total = 0
 
     def search_by_number(self, number):
-        result = Book.query.filter_by(number=number).first_or_404()
+        result = Book.query.filter_by(number=number).first()
         self.__fill_single(result)
 
     def search_by_keyword(self, keyword):

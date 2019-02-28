@@ -5,6 +5,7 @@ web = Blueprint('web', __name__)
 
 from app.web import book
 from app.web.user import user
+from app.web.user import admin
 from app.web import index
 from app.web import wishes
 from app.web import presents

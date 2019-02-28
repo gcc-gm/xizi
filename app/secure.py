@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 DIALECT = 'mysql'
-DRIVE = 'pymysql'
+DRIVE = 'cymysql'
 USERNAME = 'root'
 PASSWORD = 'ddd123'
 HOST = '127.0.0.1'
@@ -14,3 +14,11 @@ SECRET_KEY = 'abc_sf_SF_SD_SD_FCS_s'
 
 
 # Email 配置
+MAIL_SERVER = 'smtp.qq.com'
+MAIL_PORT = 465
+MAIL_USE_SSL = True
+MAIL_USE_TSL = False
+MAIL_USERNAME = 'gccgm8564@qq.com'
+MAIL_PASSWORD = 'coyoxylcewaqbbba'
+MAIL_SUBJECT_PREFIX = '[西子]'
+MAIL_SENDER = '**'

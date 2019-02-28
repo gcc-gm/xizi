@@ -15,7 +15,6 @@ def my_wishes():
     wish_list_models = current_user.wishes
     wish_list = [BookViewModel(wish.book) for wish in wish_list_models]
     total = len(wish_list)
-    uid= current_user.id
     return render_template('wish-list.html',
                            wish_list=wish_list,
                            total=total)
