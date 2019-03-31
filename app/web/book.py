@@ -46,7 +46,7 @@ def search():
                            keyword=collection_books.keyword)
 
 
-@web.route('/book/<number>/detail')
+@web.route('/book/<number>')
 @login_required
 def book_detail(number):
     wishes_note = []
