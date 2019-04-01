@@ -1,0 +1,65 @@
+.title {
+    margin-top: 16px;
+}
+
+.sub-title {
+    color: #fff;
+    font-size: 20px;
+}
+
+.info-title {
+    color: #fff;
+    font-size: 14px;
+}
+
+.info-cont {
+    height: 200px;
+    /*background: #20752f;*/
+
+}
+
+.book-img {
+    margin-top: 30px;
+    max-height: 180px;
+
+}
+
+.description-font-margin {
+
+    font-size: 14px;
+    line-height: 26px;
+    font-weight: normal;
+    margin-top: 15px;
+}
+
+.description-font-margin div {
+
+    margin-top: 4px;
+    color: #adafad;
+
+}
+
+.book_info {
+    height: 200px;
+}
+
+.trad_status {
+    margin-top: 50px;
+    color: #b0bbc5;
+    font-size: 16px;
+    line-height: 26px;
+
+}
+
+.trad_info {
+
+}
+
+@media screen and (max-width: 400px) {
+
+    .book-img {
+        margin-top: 30px;
+        max-height: 140px;
+
+    }
+}

@@ -1,0 +1,32 @@
+/*主题内容*/
+.register {
+    margin-top: 50px;
+}
+
+.title {
+    margin-top: 20px;
+}
+
+.sub-title {
+    color: #fff;
+    font-size: 16px;
+}
+
+.page-title {
+    margin-left: 30px;
+}
+
+.can-login {
+    margin-left: 40%;
+}
+
+.can-login p {
+    font-size: 16px;
+}
+
+.can-login p a {
+    font-size: 16px;
+    text-decoration: none;
+}
+
+/*footer*/
